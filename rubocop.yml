@@ -1,0 +1,120 @@
+# Default configs found here: https://github.com/bbatsov/rubocop/blob/master/config/default.yml
+
+##########
+# Layout #
+##########
+Layout/DotPosition:
+  EnforcedStyle: trailing
+
+Layout/FirstArrayElementIndentation:
+  EnforcedStyle: consistent
+
+Layout/FirstHashElementIndentation:
+  Enabled: false
+
+Layout/LineLength:
+  Max: 120
+
+Layout/MultilineMethodCallIndentation:
+  Enabled: false
+
+Layout/SpaceBeforeBlockBraces:
+  Enabled: false
+
+###########
+# Metrics #
+###########
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+  IgnoredMethods: [
+    'describe',
+    'namespace',
+    'task',
+    'transaction'
+  ]
+
+Metrics/ClassLength:
+  Enabled: false
+
+# Avoid complex methods.
+Metrics/CyclomaticComplexity:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Metrics/ModuleLength:
+  CountComments: false  # count full line comments?
+  Max: 200
+
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+##########
+# Naming #
+##########
+Naming/AccessorMethodName:
+  Enabled: false
+
+Naming/PredicateName:
+  AllowedMethods:
+    - is_jebbit_employee?
+    - has_permission?
+    - is_valid?
+
+############
+# Security #
+############
+Security/YAMLLoad:
+  Enabled: false
+
+#########
+# Style #
+#########
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/DoubleNegation:
+  Enabled: false
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Style/PercentLiteralDelimiters:
+  Enabled: false
+
+Style/GuardClause:
+  Enabled: false
+
+Style/RegexpLiteral:
+  Enabled: false
+
+Style/StringLiterals:
+  Enabled: false
+
+Style/TrailingCommaInArrayLiteral:
+  Enabled: false
+
+Style/TrailingCommaInHashLiteral:
+  Enabled: false
+
+Style/TrailingCommaInArguments:
+  Enabled: false
+
+Style/SymbolArray:
+  Enabled: false
