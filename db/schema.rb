@@ -26,20 +26,22 @@ ActiveRecord::Schema.define(version: 2022_02_11_135748) do
   end
 
   create_table "enrollments", force: :cascade do |t|
-    t.bigint "courses_id", null: false
-    t.bigint "users_id", null: false
-    t.index ["courses_id"], name: "index_enrollments_on_courses_id"
-    t.index ["users_id"], name: "index_enrollments_on_users_id"
+    t.bigint "course_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["course_id"], name: "index_enrollments_on_course_id"
+    t.index ["user_id"], name: "index_enrollments_on_user_id"
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
     t.string "first_name", null: false
     t.string "last_name", null: false
+    t.string "email", null: false
     t.text "public_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "enrollments", "courses", column: "courses_id"
-  add_foreign_key "enrollments", "users", column: "users_id"
+  add_foreign_key "courses", "users", column: "author_id"
+  add_foreign_key "enrollments", "courses"
+  add_foreign_key "enrollments", "users"
 end
