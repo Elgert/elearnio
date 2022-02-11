@@ -11,6 +11,8 @@ gem 'pg', '1.3.1'
 gem 'puma', '~> 4.1'
 # jsonapi-resources
 gem 'jsonapi-resources'
+# for fake data generation
+gem 'faker', group: [:development, :test]
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

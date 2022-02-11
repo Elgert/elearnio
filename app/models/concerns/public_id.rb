@@ -10,9 +10,9 @@ module PublicId
 
   protected
 
-  def generate_non_duplicate_id(id_length, lower_case: false)
+  def generate_non_duplicate_id(id_length)
     loop do
-      possible_id = IdGenerator.new_id(id_length, lower_case)
+      possible_id = IdGenerator.new_id(id_length)
 
       unless self.class.default_scoped.where(public_id: possible_id).exists?
         self.public_id = possible_id

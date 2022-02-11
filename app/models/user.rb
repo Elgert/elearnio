@@ -9,9 +9,9 @@ class User < ApplicationRecord
   validates :last_name, presence: true
   validates :email, presence: true
 
-  before_destroy :update_course_info
+  before_destroy :update_courses_info
 
-  def update_course_info
+  def update_courses_info
     random_other_author_id = User.where.not(author_id: id).pluck(:id).sample
     Course.where(author_id: id).update_all(author_id: random_other_author_id)
   end
