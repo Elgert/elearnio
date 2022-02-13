@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   include ::PublicId
 
-  has_many :courses
+  has_many :courses, foreign_key: :author_id
   has_many :enrollments
 
   ### Validations
