@@ -1,24 +1,21 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+To start the rails server locally:
+- pull the repository
+- go to root folder and follow steps
 
-Things you may want to cover:
+```
+bundle install
+rake db:create
+rake db:migrate
+rake db:seed
+rails s
+```
 
-* Ruby version
+You can then use the postman collection to use the endpoints:
 
-* System dependencies
+postman link: https://www.getpostman.com/collections/529b7e3566f16d8528c6
 
-* Configuration
+you can use
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```rspec spec``` to run all tests
