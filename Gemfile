@@ -13,6 +13,8 @@ gem 'puma', '~> 4.1'
 gem 'jsonapi-resources'
 # for fake data generation
 gem 'faker', group: [:development, :test]
+# for serializing data
+gem 'active_model_serializers'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
