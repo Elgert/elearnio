@@ -11,7 +11,7 @@ FactoryBot.define do
     name { Faker::ProgrammingLanguage.name }
     description { Faker::ProgrammingLanguage.creator }
     category { %w[marketing sales logistics].sample }
-    user
+    author_id { user.id }
   end
 
   factory :enrollment, class: 'Enrollment' do
