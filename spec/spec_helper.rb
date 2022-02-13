@@ -19,3 +19,9 @@ RSpec.configure do |config|
 
   config.shared_context_metadata_behavior = :apply_to_host_groups
 end
+
+shared_examples_for 'http code' do |code|
+  it "returns http #{code}" do
+    expect(response.response_code).to eq(code)
+  end
+end
