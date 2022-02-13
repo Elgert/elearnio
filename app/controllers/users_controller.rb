@@ -47,6 +47,26 @@ class UsersController < ApplicationController
     end
   end
 
+  def user_enrollments
+    user = User.find_by(public_id: params[:id])
+
+    return not_found unless user
+
+    enrollments = Enrollment.where(user_id: user.id)
+
+    render json: enrollments, status: :ok
+  end
+
+  def authored_courses
+    user = User.find_by(public_id: params[:id])
+
+    return not_found unless user
+
+    courses = Course.where(author_id: user.id)
+
+    render json: courses, status: :ok
+  end
+
   private
 
   def create_params

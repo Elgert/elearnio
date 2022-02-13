@@ -5,61 +5,45 @@ class EnrollmentsController < ApplicationController
     render json: all_enrollments
   end
 
-  def show
-    course = Course.find_by(public_id: params[:id])
-
-    return not_found unless course
-
-    render json: course, status: :ok
-  end
-
   def create
-    course = Course.new(create_params)
-    author = User.find_by(public_id: create_params[:author_id])
+    course = Course.find_by(public_id: create_params[:course_id])
+    user = User.find_by(public_id: create_params[:user_id])
 
-    return not_found unless author
+    return not_found unless user && course
 
-    course.update(author_id: author.id)
+    enrollment = Enrollment.new({ course: course, user: user })
 
-    if course.save
-      render json: course, status: :created
+    if enrollment.save
+      render json: enrollment, status: :created
     else
-      render json: { errors: course.errors }, status: :unprocessable_entity
-    end
-  end
-
-  def update
-    course = Course.find_by(public_id: params[:id])
-    author = User.find_by(public_id: create_params[:author_id])
-
-    return not_found unless course && author
-
-    if course.update(update_params.merge(author_id: author.id))
-      render json: course, status: :ok
-    else
-      render json: { errors: course.errors }, status: :unprocessable_entity
+      render json: { errors: enrollment.errors }, status: :unprocessable_entity
     end
   end
 
   def destroy
-    course = Course.find_by(public_id: params[:id])
+    course = Course.find_by(public_id: destroy_params[:course_id])
+    user = User.find_by(public_id: destroy_params[:user_id])
 
-    return not_found unless course
+    return not_found unless user && course
 
-    if course.destroy
+    enrollment = Enrollment.find_by(course_id: course.id, user_id: user.id)
+
+    return not_found unless enrollment
+
+    if enrollment.destroy
       render json: {}, status: :ok
     else
-      render json: { errors: course.errors }, status: 422
+      render json: { errors: enrollment.errors }, status: 422
     end
   end
 
   private
 
   def create_params
-    params.require(:course).permit(:name, :description, :category, :author_id)
+    params.require(:enrollment).permit(:user_id, :course_id)
   end
 
-  def update_params
-    params.require(:course).permit(:name, :description, :category, :author_id)
+  def destroy_params
+    params.require(:enrollment).permit(:user_id, :course_id)
   end
 end
